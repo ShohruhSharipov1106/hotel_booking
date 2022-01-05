@@ -37,7 +37,7 @@ class UserPage extends StatelessWidget {
                 ),
               ),
             ),
-            roomLarge(),
+            
             _settingCard(
               "assets/icons/user/favorite_icon.svg",
               "Your favourite",
@@ -66,6 +66,7 @@ class UserPage extends StatelessWidget {
 
   ListTile _settingCard(String svgIcons, String name) {
     return ListTile(
+      tileColor: kCreamLight,
       leading: SvgPicture.asset(
         svgIcons,
         fit: BoxFit.cover,

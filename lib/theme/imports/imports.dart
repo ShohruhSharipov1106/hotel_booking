@@ -2,6 +2,7 @@ export 'package:flutter/gestures.dart';
 export 'package:flutter/services.dart';
 export 'package:flutter/material.dart';
 export 'package:provider/provider.dart';
+export 'package:flutter_neumorphic/flutter_neumorphic.dart';
 export 'package:flutter_svg/flutter_svg.dart';
 export 'package:book_hotel_full_project/views/home/home_initial.dart';
 export 'package:book_hotel_full_project/views/user/user_page.dart';
@@ -21,3 +22,7 @@ export 'package:book_hotel_full_project/components/local_components/components/c
 export 'package:book_hotel_full_project/components/local_components/components/cards/hotel/hotel_medium.dart';
 export 'package:book_hotel_full_project/components/local_components/components/cards/hotel/hotel_small.dart';
 export 'package:book_hotel_full_project/services/providers/theme_mode_provider.dart';
+export 'package:book_hotel_full_project/views/checkout/checkout_2.dart';
+export 'package:book_hotel_full_project/views/checkout/checkout_3.dart';
+export 'package:book_hotel_full_project/services/providers/checkout1_provider.dart';
+export 'package:book_hotel_full_project/views/checkout/checkout_1.dart';

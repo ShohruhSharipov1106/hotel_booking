@@ -1,13 +1,13 @@
+
 import 'package:book_hotel_full_project/theme/imports/imports.dart';
-import 'package:book_hotel_full_project/views/checkout/checkout_1.dart';
+
 
 void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (context) => ThemeChangerProvider(),
-        )
+        ChangeNotifierProvider(create: (context) => ThemeChangerProvider()),
+        ChangeNotifierProvider(create: (context) => CheckOut1Provider()),
       ],
       child: const MyApp(),
     ),
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: themeLight(),
       darkTheme: themeDark(),
       themeMode: context.watch<ThemeChangerProvider>().themeMode,
-      home: const CheckOut1(),
+      home: CheckOut1(),
     );
   }
 }
