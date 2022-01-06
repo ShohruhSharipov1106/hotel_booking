@@ -6,7 +6,6 @@ class CheckOut1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-
     return Scaffold(
       appBar: _checkout1AppBar(),
       body: SingleChildScrollView(
@@ -70,13 +69,10 @@ class CheckOut1 extends StatelessWidget {
                           context
                               .watch<CheckOut1Provider>()
                               .firstNameController,
-
-                          context.read<CheckOut1Provider>().nameValidate(
-                                context
-                                    .watch<CheckOut1Provider>()
-                                    .firstNameController
-                                    .text,
-                              ),
+                          (value) =>
+                              context.read<CheckOut1Provider>().nameValidate(
+                                    value,
+                                  ),
                         ),
 
                         // LAST NAME FIELD
@@ -86,13 +82,9 @@ class CheckOut1 extends StatelessWidget {
                           "Last Name",
                           TextInputType.name,
                           context.watch<CheckOut1Provider>().lastNameController,
-
-                          context.read<CheckOut1Provider>().nameValidate(
-                                context
-                                    .watch<CheckOut1Provider>()
-                                    .lastNameController
-                                    .text,
-                              ),
+                          (value) => context
+                              .read<CheckOut1Provider>()
+                              .nameValidate(value),
                         ),
 
                         // EMAIL ADDRESS FIELD
@@ -102,13 +94,9 @@ class CheckOut1 extends StatelessWidget {
                           "Email Address",
                           TextInputType.emailAddress,
                           context.watch<CheckOut1Provider>().emailController,
-
-                          context.read<CheckOut1Provider>().emailValidate(
-                                context
-                                    .watch<CheckOut1Provider>()
-                                    .emailController
-                                    .text,
-                              ),
+                          (value) => context
+                              .read<CheckOut1Provider>()
+                              .emailValidate(value),
                         ),
 
                         // ADDRESS FIELD
@@ -117,13 +105,9 @@ class CheckOut1 extends StatelessWidget {
                           "Address",
                           TextInputType.streetAddress,
                           context.watch<CheckOut1Provider>().addressController,
-
-                          context.read<CheckOut1Provider>().nameValidate(
-                                context
-                                    .watch<CheckOut1Provider>()
-                                    .addressController
-                                    .text,
-                              ),
+                          (value) => context
+                              .read<CheckOut1Provider>()
+                              .nameValidate(value),
                         ),
 
                         // POST CODE FIELD
@@ -133,13 +117,9 @@ class CheckOut1 extends StatelessWidget {
                           "Post Code",
                           TextInputType.number,
                           context.watch<CheckOut1Provider>().postCodeController,
-
-                                context.read<CheckOut1Provider>().nameValidate(
-                                      context
-                                          .watch<CheckOut1Provider>()
-                                          .postCodeController
-                                          .text,
-                                    ),
+                          (value) => context
+                              .read<CheckOut1Provider>()
+                              .nameValidate(value),
                         ),
 
                         // COUNTRY FIELD
@@ -149,13 +129,9 @@ class CheckOut1 extends StatelessWidget {
                           "Country",
                           TextInputType.name,
                           context.watch<CheckOut1Provider>().countryController,
-
-                                context.read<CheckOut1Provider>().nameValidate(
-                                      context
-                                          .watch<CheckOut1Provider>()
-                                          .countryController
-                                          .text,
-                                    ),
+                          (value) => context
+                              .read<CheckOut1Provider>()
+                              .nameValidate(value),
                         ),
 
                         // MOBILE PHONE FIELD
@@ -167,21 +143,16 @@ class CheckOut1 extends StatelessWidget {
                           context
                               .watch<CheckOut1Provider>()
                               .mobilePhoneController,
-                           context
+                          (value) => context
                               .read<CheckOut1Provider>()
-                              .phoneNumberValidate(
-                                context
-                                    .watch<CheckOut1Provider>()
-                                    .mobilePhoneController
-                                    .text,
-                          ),
+                              .phoneNumberValidate(value),
                         ),
                       ],
                     ),
                   )
                 : (context.watch<CheckOut1Provider>().isStep1 == 2
-                    ? CheckOut2()
-                    : CheckOut3()),
+                    ? checkOut2(context)
+                    : checkOut3()),
             _goToPayment(context),
           ],
         ),
@@ -261,7 +232,9 @@ class CheckOut1 extends StatelessWidget {
           ),
         ),
       ),
-      onTap: _goPaymentFunc(context),
+      onTap: () {
+        _goPaymentFunc(context);
+      },
     );
   }
 
@@ -292,8 +265,7 @@ class CheckOut1 extends StatelessWidget {
     String hintField,
     TextInputType inputType,
     TextEditingController kontroller,
-    String? Function(String?) validation,
-
+    validation,
   ) {
     return Neumorphic(
       style: const NeumorphicStyle(
@@ -327,7 +299,9 @@ class CheckOut1 extends StatelessWidget {
           ),
           keyboardType: inputType,
           controller: kontroller,
-          validator: (value) => validation(value),
+          validator: (value) {
+            validation(value);
+          },
         ),
       ),
     );
